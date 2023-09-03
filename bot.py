@@ -155,15 +155,15 @@ def get_text_messages(message):
         markup.add(btn1,btn2,btn3)
         bot.send_message(message.from_user.id, "Выберите источник финансирования", reply_markup=markup)
     elif message.text =='Бюджет':
-        bot.send_photo(message.from_user.id, open('C:/Users/RSR/Desktop/practice/bot/files/budget.png','rb'))
+        bot.send_photo(message.from_user.id, open('.../files/budget.png','rb'))
     elif message.text=='Коммерция':
-        bot.send_photo(message.from_user.id, open('C:/Users/RSR/Desktop/practice/bot/files/commercial.png','rb'))
+        bot.send_photo(message.from_user.id, open('.../files/commercial.png','rb'))
 
     elif message.text == '📊Мин. баллы ЕГЭ':
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton('🔙 Главное меню')
         markup.add(btn1)
-        with open('C:/Users/RSR/Desktop/practice/bot/files/ege.txt', 'r',encoding='utf-8') as file:
+        with open('.../files/ege.txt', 'r',encoding='utf-8') as file:
             text = file.read()
         bot.send_message(message.from_user.id,text=text, reply_markup=markup, parse_mode='Markdown')
 
@@ -181,7 +181,7 @@ def get_text_messages(message):
 
     elif message.text == '📃Перечень ВИ для всех направлений подготовки':
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        with open('C:/Users/RSR/Desktop/practice/bot/files/vi1.txt', 'r',encoding='utf-8') as file:
+        with open('.../files/vi1.txt', 'r',encoding='utf-8') as file:
             text = file.read()
         bot.send_message(message.from_user.id,text=text, reply_markup=markup, parse_mode='Markdown')
 
@@ -193,7 +193,7 @@ def get_text_messages(message):
     
     elif message.text == '📉Мин.баллы по ВИ':
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        with open('C:/Users/RSR/Desktop/practice/bot/files/vi2.txt', 'r',encoding='utf-8') as file:
+        with open('.../files/vi2.txt', 'r',encoding='utf-8') as file:
             text = file.read()
         bot.send_message(message.from_user.id,text=text, reply_markup=markup, parse_mode='Markdown')
 
