@@ -7,9 +7,13 @@
 *pip install telebot*
 
 И запустить с помощью команды 
+
 ###Windows
+
 *python bot.py*
+
 ###Linux/MacOS
+
 *python3 bot.py*
 
 
