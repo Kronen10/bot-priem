@@ -8,11 +8,11 @@
 
 И запустить с помощью команды 
 
-###Windows
+### Windows
 
 *python bot.py*
 
-###Linux/MacOS
+### Linux/MacOS
 
 *python3 bot.py*
 
