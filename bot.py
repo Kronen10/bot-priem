@@ -1,12 +1,34 @@
 import telebot
 from telebot import types
-
+import datetime
 
 bot = telebot.TeleBot('TOKEN')
+
+try:
+    with open("log_number.txt", "r") as file:
+        log_number = int(file.read())
+except FileNotFoundError:
+    log_number = 1
+
+def log_user_data(user, log_number):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    username = f"@{user.username}"
+    user_info = f"{log_number}, Username: {username}, First Name: {user.first_name}, Last Name: {user.last_name}, Команда запуска получена в: {timestamp}\n"
+    with open("user_info.txt", "a") as file:
+        file.write(user_info)
+    with open("log_number.txt", "w") as file:
+        file.write(str(log_number + 1))
+
+
 
 @bot.message_handler(commands=['start']) #стартовая команда
 def start(message):
 
+    global log_number
+    user = message.from_user
+    log_user_data(user, log_number)
+    log_number += 1
+    
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn1 = types.KeyboardButton("ВО")
     btn2 = types.KeyboardButton('СПО')
