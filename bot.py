@@ -15,7 +15,15 @@ file_path_vi1 = os.path.join(current_dir, 'files', 'vi1.txt')
 file_path_vi2 = os.path.join(current_dir, 'files', 'vi2.txt')
 file_path_to_log = os.path.join (current_dir, "log.log")
 file_path_to_log1 = os.path.join (current_dir, "log.json")
+file_path_to_log2 = os.path.join (current_dir, "startups.log")
 
+
+now = datetime.now()
+current_time = str(date.today()) + " " + now.strftime("%H:%M:%S")
+text =  current_time+" : bot started"
+with open(file_path_to_log2, "a",encoding="utf-8") as file:
+    file.write("\n"+text)
+bot.send_message(575078092, text)
 
 
 @bot.message_handler(commands=['start']) #стартовая команда
@@ -33,7 +41,6 @@ def get_text_messages(message):
     
     now = datetime.now()
     current_time = str(date.today()) + " " + now.strftime("%H:%M:%S")
-    
 
     text =  current_time+" @" +message.from_user.username + " ("+str(message.from_user.id) +") : " +message.text
     json_log = {"time" : current_time, "username":message.from_user.username, "userid": message.from_user.id, "text":message.text }
@@ -80,8 +87,10 @@ def get_text_messages(message):
         btn5 = types.KeyboardButton('УП')
         btn6 = types.KeyboardButton('ГМУ')
         btn7 = types.KeyboardButton('ИСТУ')
-        btn8 = types.KeyboardButton('🔙 Главное меню')
-        markup.add(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8)
+        btn8 = types.KeyboardButton('ТоргДело')
+        btn9 = types.KeyboardButton('ТаможДело')
+        btn10 = types.KeyboardButton('🔙 Главное меню')
+        markup.add(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10)
         bot.send_message(message.from_user.id, '⬇ Выберите интересующее вас направление подготовки', reply_markup=markup)
 
     elif message.text == 'Юриспруденция':
@@ -138,6 +147,22 @@ def get_text_messages(message):
         btn2 = types.KeyboardButton('🔙 Главное меню')
         markup.add(btn1,btn2)
         bot.send_message(message.from_user.id, 'Направление подготовки "Информационные системы и технологии в управлении" в ВУЗах предназначено для студентов, которые интересуются применением информационных технологий в сфере управления и бизнеса. Курс обучения включает изучение основных принципов информационных систем, разработку программного обеспечения, анализ данных, управление проектами, электронную коммерцию и другие смежные темы.'
+                        '\n\nПодробнее об направлении подготовки "Информационные системы и технологии в управлении" можно прочитать по [ссылке](https://abit.bgu-chita.ru/abiturient/104-09-03-03-prikladnaya-informatika-po-profilyu-informatsionnye-sistemy-i-tekhnologii-v-upravlenii)', reply_markup=markup, parse_mode='Markdown')
+    
+    elif message.text == 'ТоргДело':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton('📚Направления подготовки')
+        btn2 = types.KeyboardButton('🔙 Главное меню')
+        markup.add(btn1,btn2)
+        bot.send_message(message.from_user.id, 'Направление подготовки "Торговое дело" в ВУЗах предназначено для студентов, которые интересуются маркетингом, продажами и логистикой. Курс обучения включает изучение основных принципов работы по продвижению финансовых организаций, контрактной системы закупок и психологии потребителя.'
+                        '\n\nПодробнее об направлении подготовки "Информационные системы и технологии в управлении" можно прочитать по [ссылке](https://abit.bgu-chita.ru/abiturient/104-09-03-03-prikladnaya-informatika-po-profilyu-informatsionnye-sistemy-i-tekhnologii-v-upravlenii)', reply_markup=markup, parse_mode='Markdown')
+
+    elif message.text == 'ТаможДело':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton('📚Направления подготовки')
+        btn2 = types.KeyboardButton('🔙 Главное меню')
+        markup.add(btn1,btn2)
+        bot.send_message(message.from_user.id, 'Направление подготовки "Таможенное дело" в ВУЗах предназначено для студентов, которые хотят в дальнейшем вести контроль за деятельностью участников внешнеэкономической деятельности. Обучение будет направлено на изучение регулирования внешнеторговой  деятельности, таможенного права, информационных технологий в этой сфере и логистики.'
                         '\n\nПодробнее об направлении подготовки "Информационные системы и технологии в управлении" можно прочитать по [ссылке](https://abit.bgu-chita.ru/abiturient/104-09-03-03-prikladnaya-informatika-po-profilyu-informatsionnye-sistemy-i-tekhnologii-v-upravlenii)', reply_markup=markup, parse_mode='Markdown')
 
 
